@@ -28,12 +28,12 @@ namespace SerialViewer
             FillSystemSpecs();
         }
 
-        private static T? QueryInfo<T>(in string keyValue, in string propertyValue, in bool onlyDebug, in bool singleQuery)
+        private static T QueryInfo<T>(in string keyValue, in string propertyValue, in bool onlyDebug, in bool singleQuery)
         {
             ManagementObjectSearcher systemSearcher = new("select * from " + keyValue);
 
             uint found = 0;
-            T? result = default;
+            T result = default!;
             foreach(ManagementObject share in systemSearcher.Get())
             {
                 PropertyData? PC = SearchPropertyValue(share, propertyValue, onlyDebug);
@@ -101,7 +101,7 @@ namespace SerialViewer
             return null;
         }
 
-        private static void SumResult<T>(ref T? result, object? pcValue)
+        private static void SumResult<T>(ref T result, object? pcValue)
         {
             if (typeof(T) == typeof(uint))
             {
@@ -117,9 +117,9 @@ namespace SerialViewer
             }
         }
 
-        private static T? RuntimeCast<T>(object? obj)
+        private static T RuntimeCast<T>(object? obj)
         {
-            if (obj == null) return default;
+            if (obj == null) return default!;
             return (T)obj;
         }
 
