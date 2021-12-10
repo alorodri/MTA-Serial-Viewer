@@ -58,11 +58,11 @@ namespace SerialViewer
 
         private void FillSerial()
         {
-            string? keyValue = (string?)Registry.GetValue(MTASA_REGISTRY_FOLDER
+            string keyValue = (string)Registry.GetValue(MTASA_REGISTRY_FOLDER
                 + MTASA_VERSION_FOLDER
                 + MTASA_GENERAL_SETTINGS_FOLDER,
                 MTASA_SERIAL_KEY,
-                "not found");
+                "not found")!;
 
             serialTextBox.Text = keyValue;
         }
